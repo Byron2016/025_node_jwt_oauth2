@@ -3,6 +3,7 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import * as cors from 'cors'
 import helmet from "helmet"; // Security
+import routes from "./routes"
 
 const PORT = process.env.PORT || 3000
 
@@ -16,6 +17,8 @@ AppDataSource.initialize().then(async () => {
 
 
     app.use(express.json())
+    // Routes
+    app.use('/', routes)
 
     // start express server
     app.listen(PORT, () => {
@@ -23,3 +26,8 @@ AppDataSource.initialize().then(async () => {
     })
 
 }).catch(error => console.log(error))
+
+// let count = 0;
+// setInterval(() => {
+//     console.log(count++)
+// }, 1000)

@@ -1,53 +1,127 @@
 import { AppDataSource } from '../data-source'
-import { NextFunction, Request, Response } from "express"
+import { Request, Response } from "express"
 import { User } from "../entity/User"
+import { validate } from "class-validator"
 
-export class UserController {
+export class UserController  {
+    // Get all users
+    static getAll = async(req: Request, res: Response) =>{
+        const userRepository = AppDataSource.getRepository(User)
+        let users; 
 
-    private userRepository = AppDataSource.getRepository(User)
-
-    async all(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.find()
-    }
-
-    async one(request: Request, response: Response, next: NextFunction) {
-        const id = parseInt(request.params.id)
-
-
-        const user = await this.userRepository.findOne({
-            where: { id }
-        })
-
-        if (!user) {
-            return "unregistered user"
-        }
-        return user
-    }
-
-    async save(request: Request, response: Response, next: NextFunction) {
-        const { firstName, lastName, age } = request.body;
-
-        const user = Object.assign(new User(), {
-            firstName,
-            lastName,
-            age
-        })
-
-        return this.userRepository.save(user)
-    }
-
-    async remove(request: Request, response: Response, next: NextFunction) {
-        const id = parseInt(request.params.id)
-
-        let userToRemove = await this.userRepository.findOneBy({ id })
-
-        if (!userToRemove) {
-            return "this user not exist"
+        try {
+            users = await userRepository.find()
+        } catch (e) {
+            res.status(404).json({message: 'Not result'})
         }
 
-        await this.userRepository.remove(userToRemove)
+        if(users.length > 0){
+            res.send(users);
+        } else {
+            res.status(404).json({message: 'Not result'})
+        }
+    }
+    
+    // Get one user
+    static getById = async(req: Request, res: Response) =>{
+        const {id} = req.params
+        const userRepository = AppDataSource.getRepository(User)
+        try{
+            // parseInt(id, 10)
+            const user = await userRepository.findOneOrFail({
+                where: { id: parseInt(id, 10)}
+            })
+            res.send(user);
+        }
+        catch(e){
+            res.status(404).json({message: 'Not result'})
+        }
+    }
 
-        return "user has been removed"
+    // Create a new user
+    static newUser = async(req: Request, res: Response) =>{
+        const {username, password, role} = req.body
+        const user = new User()
+
+        console.log(req)
+
+        user.username = username;
+        user.password = password;
+        user.role = role;
+
+        // Validate
+        const errors = await validate(user);
+        if(errors.length > 0){
+            res.status(404).json(errors)
+        }
+
+        const userRepository = AppDataSource.getRepository(User)
+        try{
+            await userRepository.save(user) 
+        }
+        catch(e){
+            res.status(409).json({message: 'Username already exist'})
+        }
+
+        res.send('User created');
+    }
+
+    // Edit user
+    static editUser = async(req: Request, res: Response) =>{
+        let user;
+        const {id} = req.params
+        const {username, role} = req.body
+
+        const userRepository = AppDataSource.getRepository(User)
+
+        try{
+            user = await userRepository.findOneOrFail({
+                where: { id: parseInt(id, 10)}
+            }) 
+            user.username = username;
+            user.role = role;
+        }
+        catch(e){
+            res.status(404).json({message: 'User no found'})
+        }
+
+        // Validate
+        const errors = await validate(user);
+        if(errors.length > 0){
+            res.status(400).json(errors)
+        }
+
+        // Try to save user
+        try{
+            await userRepository.save(user) 
+        }
+        catch(e){
+            res.status(409).json({message: 'Username already in use'})
+        }
+
+        res.status(201).send('User updated');
+    }
+
+    // Delete user
+    static deleteUser = async(req: Request, res: Response) =>{
+        const {id} = req.params
+        const userRepository = AppDataSource.getRepository(User)
+        let user: User;
+
+        try{
+            user = await userRepository.findOneOrFail({
+                where: { id: parseInt(id, 10)}
+            })
+        }
+        catch(e){
+            res.status(404).json({message: 'User not found'})
+        }
+        
+        // Remove user
+        userRepository.delete(id)
+        res.status(201).json({message: 'User deleted'})
     }
 
 }
+
+export default UserController
