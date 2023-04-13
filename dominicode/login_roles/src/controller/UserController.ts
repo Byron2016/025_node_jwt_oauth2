@@ -57,6 +57,7 @@ export class UserController  {
 
         const userRepository = AppDataSource.getRepository(User)
         try{
+            user.hasPassword()
             await userRepository.save(user) 
         }
         catch(e){
