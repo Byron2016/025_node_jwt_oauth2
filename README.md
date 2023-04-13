@@ -61,6 +61,47 @@
 
 # Steps
 
----
+- Build project scafolding wiht **typeorm**
+
+  ```bash
+    npx typeorm init --name login_roles --database mysql --express
+  ```
+
+- Add dependencies
+
+  ```bash
+    npm i cors jsonwebtoken bcryptjs class-validator helmet
+  ```
+
+  ```bash
+    npm i -D ts-node-dev typescript @types/bcryptjs @types/cors @types/jsonwebtoken @types/express @types/node
+  ```
+
+- Add MySql on the cloud
+
+- MySql en la nube
+  - [PlanetScale - Hosting de MySQL Gratuito y Fácil](https://www.youtube.com/watch?v=XEY-7tKkPik)
+    - [Oficial de PlanetScale](https://planetscale.com/)
+- Error:
+
+  - ts-node-dev: no script to run provided
+
+    ```bash
+    "scripts": {
+    	"tsc": "tsc",
+    	"dev": "set debug=* && ts-node-dev --respawn --transpile-only ./src/index.ts"
+    }
+    ```
+
+  - server does not allow insecure connections, client must use SSL/TLS
+
+    - https://stackoverflow.com/questions/56660312/cannot-connect-an-ssl-secured-database-to-typeorm
+    - To avoid in development enviroment just add to **data-source.ts**
+
+    ```bash
+    ssl: {
+    	rejectUnauthorized: false,
+    }
+    ```
 
 [⏪(Back to top)](#table-of-contents)
