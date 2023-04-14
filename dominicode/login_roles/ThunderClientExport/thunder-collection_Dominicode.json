@@ -1,0 +1,132 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Dominicode",
+    "dateExported": "2023-04-14T01:11:47.416Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "ee87fe77-8c3d-4944-8993-7f8d3419a929",
+            "colId": "77277eac-7277-4a24-8425-1f61aaf0c018",
+            "containerId": "",
+            "name": "GET -> getAll Users",
+            "url": "http://localhost:3000/users",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-04-13T19:06:45.799Z",
+            "modified": "2023-04-13T20:37:18.301Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d8004e05-f4c4-494a-bf3c-2b8ac1d00cad",
+            "colId": "77277eac-7277-4a24-8425-1f61aaf0c018",
+            "containerId": "",
+            "name": "GET -> getById User",
+            "url": "http://localhost:3000/users/1",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2023-04-13T19:09:06.731Z",
+            "modified": "2023-04-13T20:37:58.522Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "52331c12-5582-4c26-a37c-929a1f1cbbb9",
+            "colId": "77277eac-7277-4a24-8425-1f61aaf0c018",
+            "containerId": "",
+            "name": "POST -> newUser User",
+            "url": "http://localhost:3000/users",
+            "method": "POST",
+            "sortNum": 25625,
+            "created": "2023-04-13T19:07:22.480Z",
+            "modified": "2023-04-13T21:21:29.158Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"domenicode\",\n  \"password\": \"123456\",\n  \"role\": \"admin\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7d962206-3c0c-4714-ab6f-cb9d9396c8a5",
+            "colId": "77277eac-7277-4a24-8425-1f61aaf0c018",
+            "containerId": "",
+            "name": "PATCH-> editUser User",
+            "url": "http://localhost:3000/users/1",
+            "method": "PATCH",
+            "sortNum": 26250,
+            "created": "2023-04-13T19:14:10.410Z",
+            "modified": "2023-04-13T20:42:00.395Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"ffff\",\n  \"role\": \"admin\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f03877d4-0597-43dd-bbfc-808464c3bf52",
+            "colId": "77277eac-7277-4a24-8425-1f61aaf0c018",
+            "containerId": "",
+            "name": "DELETE -> deleteUser User",
+            "url": "http://localhost:3000/users/2",
+            "method": "DELETE",
+            "sortNum": 27500,
+            "created": "2023-04-13T19:10:12.559Z",
+            "modified": "2023-04-13T21:21:13.082Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e86db140-d5ad-4fbe-b328-89757f76970f",
+            "colId": "77277eac-7277-4a24-8425-1f61aaf0c018",
+            "containerId": "",
+            "name": "POST -> Login User",
+            "url": "http://localhost:3000/auth/login",
+            "method": "POST",
+            "sortNum": 37500,
+            "created": "2023-04-13T20:52:24.808Z",
+            "modified": "2023-04-14T00:54:00.688Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"adomenicode\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "254277f0-5e7f-4486-8b56-c6452c2f1238",
+            "colId": "77277eac-7277-4a24-8425-1f61aaf0c018",
+            "containerId": "",
+            "name": "POST -> Login ChangePassword",
+            "url": "http://localhost:3000/auth/change-password",
+            "method": "POST",
+            "sortNum": 47500,
+            "created": "2023-04-14T00:52:07.623Z",
+            "modified": "2023-04-14T00:56:11.213Z",
+            "headers": [
+                {
+                    "name": "auth",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInVzZXJuYW1lIjoiYWRvbWVuaWNvZGUiLCJpYXQiOjE2ODE0MzM2NDAsImV4cCI6MTY4MTQzNzI0MH0.urrNEaJaALr1mVw4QDbnKuAZ8pORb-Qy5Ec5R2_e1uQ"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"oldPassword\": \"123456\",\r\n  \"newPassword\": \"654321\"\r\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
