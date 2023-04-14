@@ -22,7 +22,7 @@ AppDataSource.initialize().then(async () => {
 
     // start express server
     app.listen(PORT, () => {
-        console.log('Express server has started on port ${PORT}. Open http://localhost:${PORT}/users to see results')
+        console.log(`Express server has started on port ${PORT}. Open http://localhost:${PORT}/users to see results`)
     })
 
 }).catch(error => console.log(error))
