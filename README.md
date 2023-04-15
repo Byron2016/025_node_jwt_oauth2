@@ -80,8 +80,42 @@
 - Add MySql on the cloud
 
 - MySql en la nube
+
   - [PlanetScale - Hosting de MySQL Gratuito y Fácil](https://www.youtube.com/watch?v=XEY-7tKkPik)
     - [Oficial de PlanetScale](https://planetscale.com/)
+
+- Deploy to Vercel With TypeScript
+
+  - Local
+    - [Deploy Node API (Express Typescript) on Vercel](https://dev.to/tirthpatel/deploy-node-ts-express-typescript-on-vercel-284h)
+
+      - Package.json
+
+        - npm init -y
+        - npm i express
+        - npm i -D typescript nodemon @types/node @types/express ts-node
+        - npm i -D pre-commit
+
+        - "start": "nodemon src/index.ts",
+
+      - Create tsconfig.json
+        - Debe estar previamente instalado typescript, en caso salir error, desinstalar tsc, typescript y volver a instalar typescript.
+        - npx tsc --init --rootDir src --outDir build --esModuleInterop --resolveJsonModule --lib es6 --module commonjs --allowJs true --noImplicitAny true
+      - Crear "src/index.ts"
+
+    - Create Vercel project
+      - Go to vercel.com -> Login
+      - Login using the Version control platform you have kept your repository
+      - From the dashboard -> Add new project -> Select your repository -> Deploy
+      - Afer deployment you will see something similar to this!
+        404: NOT_FOUND
+        Code: 'Not_FOUND'
+        ID: .....
+      - Add Vercel config in app
+        - In the above step, after your fist deploy is completed, you can see that we're not getting Express Typescript on Vercel response from API.
+        - To work this as expected, we need to tell Vercel that is a API and you need to serve this as a serverless function.
+        - For this, simply we need to add vercel.json
+
 - Error:
 
   - ts-node-dev: no script to run provided
