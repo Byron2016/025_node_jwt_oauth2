@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "./index.js",
@@ -10,6 +9,13 @@
     {
       "src": "/(.*)",
       "dest": "/"
+    }
+  ],
+
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/test/"
     }
   ]
 }
