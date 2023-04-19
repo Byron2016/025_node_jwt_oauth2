@@ -1,11 +1,14 @@
+import dotenv from "dotenv";
 import express from "express";
-import { Request, Response } from "express";
 import { AppDataSource } from "./data-source";
 import cors from "cors";
 import helmet from "helmet"; // Security
 import routes from "./routes";
+import { PORT } from "./shared/constants/app.constants";
 
-const PORT = process.env.PORT || 3000;
+dotenv.config();
+
+// const PORT = process.env.PORT || 3000;
 
 AppDataSource.initialize()
   .then(async () => {
