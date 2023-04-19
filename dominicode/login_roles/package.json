@@ -27,8 +27,11 @@
   },
   "scripts": {
     "start": "npm run build && node dist/index.js",
-    "build": "rimraf ./build && tsc",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "pre-prod": "rimraf dist && npm run build",
     "tsc": "tsc",
-    "dev": "set debug=* && ts-node-dev --respawn --transpile-only ./src/index.ts"
+    "dev": "set debug=* && ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "predev": "npm run build"
   }
 }
