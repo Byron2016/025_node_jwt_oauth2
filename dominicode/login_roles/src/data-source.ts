@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "./entity/User";
-const dataKey: any = require("./data-key.json");
+// const dataKey: any = require("./data-key.json");
 import {
   MYSQLDB_HOST,
   MYSQLDB_USER,
