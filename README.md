@@ -79,7 +79,7 @@
 
 - Add MySql on the cloud
 
-- MySql en la nube
+- MySql on the cloud
 
   - [PlanetScale - Hosting de MySQL Gratuito y Fácil](https://www.youtube.com/watch?v=XEY-7tKkPik)
     - [Oficial de PlanetScale](https://planetscale.com/)
@@ -87,6 +87,7 @@
 - Deploy to Vercel With TypeScript
 
   - Local
+
     - [Deploy Node API (Express Typescript) on Vercel](https://dev.to/tirthpatel/deploy-node-ts-express-typescript-on-vercel-284h)
 
       - Package.json
