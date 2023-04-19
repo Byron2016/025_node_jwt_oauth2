@@ -7,6 +7,7 @@ import routes from "./routes";
 import { PORT } from "./shared/constants/app.constants";
 
 dotenv.config();
+console.log(PORT);
 
 // const PORT = process.env.PORT || 3000;
 
